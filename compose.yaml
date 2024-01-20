@@ -1,0 +1,39 @@
+# Simplism Builder
+services:
+  simplisme-builder:
+    container_name: simplism-builder 
+    environment: &env
+      - ABOUT="Simplism Environment Builder"
+    #init: true
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    platform: linux/${LINUX_ARCH}
+    build: &build        
+      args:
+        - GO_ARCH=${GO_ARCH}
+        - GO_VERSION=${GO_VERSION}
+        - TINYGO_ARCH=${TINYGO_ARCH}
+        - TINYGO_VERSION=${TINYGO_VERSION}
+        - SIMPLISM_VERSION=${SIMPLISM_VERSION}
+        - SIMPLISM_DISTRO=${SIMPLISM_DISTRO}
+        - USER_NAME=simplism
+      context: ./.docker
+      dockerfile: Dockerfile
+    volumes: &volumes
+      - .:/builder
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    ports:
+      - 9090:8080
+    
+  simplism-builder-tasks:
+    depends_on:
+      - simplisme-builder
+    container_name: simplism-builder-tasks
+    entrypoint: ["/builder/.tasks/init.sh"]
+    environment: *env
+    build: *build       
+    platform: linux/${LINUX_ARCH}
+    volumes: *volumes
+
