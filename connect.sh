@@ -1,4 +1,4 @@
 #!/bin/bash
-docker exec --workdir /builder -it simplism-builder \
+docker exec --workdir /workspace -it simplism-builder \
 /bin/bash
 

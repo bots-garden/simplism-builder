@@ -20,7 +20,7 @@ services:
       context: ./.docker
       dockerfile: Dockerfile
     volumes: &volumes
-      - .:/builder
+      - .:/workspace
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
@@ -31,7 +31,7 @@ services:
     depends_on:
       - simplisme-builder
     container_name: simplism-builder-tasks
-    entrypoint: ["/builder/.tasks/init.sh"]
+    entrypoint: ["/workspace/.tasks/init.sh"]
     environment: *env
     build: *build       
     platform: linux/${LINUX_ARCH}

@@ -40,7 +40,7 @@ docker compose --env-file arm64.env down
 
 Once the builder started, you can use it like this:
 ```bash
-docker exec --workdir /builder -it simplism-builder /bin/bash
+docker exec --workdir /workspace -it simplism-builder /bin/bash
 ```
 
 Now you can build [Extism](https://extism.org/) plug-ins for [Simplism](https://github.com/bots-garden/simplism). Try this:
