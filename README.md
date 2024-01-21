@@ -7,7 +7,6 @@
 - GoLang compiler
 - Tinygo compiler
 - Rustc and Cargo
-- Extism CLI
 - Simplism executable
 
 That means you don't need to install anything (except Docker) to build wasm plug-ins on your computer.
