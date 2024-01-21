@@ -21,7 +21,7 @@ simplism listen \
 
 > Query the wasm plug-in:
 ```bash
-curl http://localhost:8080/hello/world \
+curl http://localhost:8080 \
 -H 'content-type: application/json; charset=utf-8' \
 -d '{"firstName":"Bob","lastName":"Morane"}'
 ```
